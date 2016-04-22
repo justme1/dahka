@@ -1,9 +1,8 @@
 'use strict';
-
 const express = require('express');
 
 // Constants
-const PORT = 8080;
+const PORT = 8085;
 
 // App
 const app = express();
@@ -36,14 +35,12 @@ AWS.config.update({
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-    TableName : "Movies3",
+    TableName : "Image",
     KeySchema: [       
-        { AttributeName: "year", KeyType: "HASH"},  //Partition key
-        { AttributeName: "title", KeyType: "RANGE" }  //Sort key
+        { AttributeName: "Id", KeyType: "HASH"}  //Partition key
     ],
     AttributeDefinitions: [       
-        { AttributeName: "year", AttributeType: "N" },
-        { AttributeName: "title", AttributeType: "S" }
+        { AttributeName: "Id", AttributeType: "S" }
     ],
     ProvisionedThroughput: {       
         ReadCapacityUnits: 10, 
@@ -58,6 +55,13 @@ dynamodb.createTable(params, function(err, data) {
         console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
     }
 });
+
+
+
+
+
+
+
 
 // S3 SECTION
 
@@ -82,6 +86,24 @@ var params = {
     Body: fs.createReadStream('./image1.jpeg')
 }
 
-client.upload(params, function uploadCallback (err, data) {
-    console.log(err, data)
-})
+// client.upload(params, function uploadCallback (err, data) {
+//     console.log(err, data);
+//     if (!err && data) {
+//         var params = {
+//             TableName: 'Image',
+//             Item: {
+//                 Id: 'dynamodb.png',
+//                 DateAdded: new Date().toISOString(),
+//                 VoteCount: 0
+//             }
+//         };
+//         console.log("Calling PutItem");
+//         client.put(params, function(err, data) {
+//             if (err) {
+//                 // an error occured!
+//             }
+//             else console.log("PutItem returned successfully");
+//         });
+//
+//     }
+// })
