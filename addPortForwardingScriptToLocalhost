@@ -1,0 +1,1 @@
+VBoxManage controlvm default natpf1 "nginx,tcp,127.0.0.1,8080,,8080"

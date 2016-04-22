@@ -1,0 +1,1 @@
+VBoxManage controlvm default natpf1 delete "nginx".
