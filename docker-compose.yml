@@ -8,3 +8,5 @@ web:
     - DYNAMODB_HOST=dynamodb
 dynamodb:
   image: instructure/dynamodb:latest
+s3:
+  image: lphoward/fake-s3:latest
