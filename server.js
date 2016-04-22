@@ -14,6 +14,14 @@ app.get('/', function (req, res) {
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
 
+
+
+
+
+
+
+// DYANMO DB SECTION
+
 var endpoint = "http://" + process.env.DYNAMODB_HOST + ':8000';
 var AWS = require("aws-sdk");
 
@@ -51,3 +59,29 @@ dynamodb.createTable(params, function(err, data) {
     }
 });
 
+// S3 SECTION
+
+var fs = require('fs')
+
+var endpointS3 = "http://" + process.env.S3_HOST + ':4569';
+console.log(endpointS3);
+
+var config = {
+    s3ForcePathStyle: true,
+    accessKeyId: 'ACCESS_KEY_ID',
+    secretAccessKey: 'SECRET_ACCESS_KEY',
+    endpoint: new AWS.Endpoint(endpointS3)
+}
+
+
+var client = new AWS.S3(config)
+
+var params = {
+    Key: 'Key',
+    Bucket: 'Bucket',
+    Body: fs.createReadStream('./image1.jpeg')
+}
+
+client.upload(params, function uploadCallback (err, data) {
+    console.log(err, data)
+})

@@ -4,8 +4,10 @@ web:
     - "8080:8080"
   links:
     - dynamodb
+    - s3
   environment:
     - DYNAMODB_HOST=dynamodb
+    - S3_HOST=s3
 dynamodb:
   image: instructure/dynamodb:latest
 s3:
