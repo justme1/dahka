@@ -81,7 +81,7 @@ var config = {
 var client = new AWS.S3(config)
 
 var params = {
-    Key: 'Key',
+    Key: 'image1.jpeg',
     Bucket: 'Bucket',
     Body: fs.createReadStream('./image1.jpeg')
 }
@@ -89,23 +89,40 @@ var params = {
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 client.upload(params, function uploadCallback (err, data) {
-    console.log(err, data);
+     console.log(err, data);
     if (!err && data) {
         var params = {
             TableName: 'Image',
             Item: {
-                Id: 'dynamodb.png'
+                Id: data.Location
             }
         };
         console.log("Calling PutItem ");
-        docClient.put(params, function(err, data) {
+        docClient.put(params, function(err, data2) {
             if (err) {
                 // an error occured!
                 console.log(err);
             }
             else {
               console.log("PutItem returned successfully");
-              console.log(data);
+                var params = {
+                    TableName: 'Image',
+                    Key: {
+                        Id: data.Location
+                    }
+                };
+ 
+                docClient.get(params, function(err, data3) {
+                    if (err) {
+                        // an error occured!
+                        console.log(err);
+                    }
+                    else {
+                        console.log("get returned successfully");
+                        console.log(data3);
+                    }
+                });
+
             } 
         });
 
