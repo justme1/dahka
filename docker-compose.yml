@@ -14,6 +14,8 @@ web:
     - '.:/usr/src/app'
 dynamodb:
   image: instructure/dynamodb:latest
+  ports:
+    - "8000:8000"
 s3:
   image: lphoward/fake-s3:latest
   ports: 
