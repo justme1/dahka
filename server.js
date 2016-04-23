@@ -6,15 +6,17 @@ const PORT = 8085;
 
 // App
 const app = express();
+
 app.get('/', function (req, res) {
-  res.send('Hello world\n');
+    console.log('booga');
+  res.send('Hello world16\n');
 });
 
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
 
 
-
+console.log('boo');
 
 
 
@@ -60,9 +62,6 @@ dynamodb.createTable(params, function(err, data) {
 
 
 
-
-
-
 // S3 SECTION
 
 var fs = require('fs')
@@ -78,6 +77,7 @@ var config = {
 }
 
 
+
 var client = new AWS.S3(config)
 
 var params = {
@@ -85,6 +85,14 @@ var params = {
     Bucket: 'Bucket',
     Body: fs.createReadStream('./image1.jpeg')
 }
+
+
+
+client.upload (params, function uploadCallback(err, data) {
+  console.log(data.Location);
+    
+});
+
 
 // client.upload(params, function uploadCallback (err, data) {
 //     console.log(err, data);
