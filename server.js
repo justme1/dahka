@@ -86,32 +86,28 @@ var params = {
     Body: fs.createReadStream('./image1.jpeg')
 }
 
+var docClient = new AWS.DynamoDB.DocumentClient();
 
+client.upload(params, function uploadCallback (err, data) {
+    console.log(err, data);
+    if (!err && data) {
+        var params = {
+            TableName: 'Image',
+            Item: {
+                Id: 'dynamodb.png'
+            }
+        };
+        console.log("Calling PutItem ");
+        docClient.put(params, function(err, data) {
+            if (err) {
+                // an error occured!
+                console.log(err);
+            }
+            else {
+              console.log("PutItem returned successfully");
+              console.log(data);
+            } 
+        });
 
-client.upload (params, function uploadCallback(err, data) {
-  console.log(data.Location);
-    
-});
-
-
-// client.upload(params, function uploadCallback (err, data) {
-//     console.log(err, data);
-//     if (!err && data) {
-//         var params = {
-//             TableName: 'Image',
-//             Item: {
-//                 Id: 'dynamodb.png',
-//                 DateAdded: new Date().toISOString(),
-//                 VoteCount: 0
-//             }
-//         };
-//         console.log("Calling PutItem");
-//         client.put(params, function(err, data) {
-//             if (err) {
-//                 // an error occured!
-//             }
-//             else console.log("PutItem returned successfully");
-//         });
-//
-//     }
-// })
+    }
+})
