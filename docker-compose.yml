@@ -10,7 +10,11 @@ web:
   environment:
     - DYNAMODB_HOST=dynamodb
     - S3_HOST=s3
+  volumes:
+    - '.:/usr/src/app'
 dynamodb:
   image: instructure/dynamodb:latest
 s3:
   image: lphoward/fake-s3:latest
+  ports: 
+    - "4569:4569"
