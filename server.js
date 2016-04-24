@@ -7,10 +7,6 @@ const PORT = 8085;
 // App
 const app = express();
 
-app.get('/', function (req, res) {
-    console.log('booga');
-  res.send('Hello world16\n');
-});
 
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
@@ -128,3 +124,22 @@ client.upload(params, function uploadCallback (err, data) {
 
     }
 })
+
+var params = {
+    TableName: 'Image'
+};
+
+
+app.get('/', function (req, res) {
+    
+
+docClient.scan(params, function(err, data) {
+       if (err) {
+            res.send('error occured while getting images; Please retry.')     
+        } else {
+            res.send(data.Items);
+        }
+    });
+    
+    
+});
