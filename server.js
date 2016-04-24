@@ -130,14 +130,18 @@ var params = {
 };
 
 
-app.get('/', function (req, res) {
+app.get ('/', function (req,res) {
+   res.end('Welcome!');
+});
+
+app.get('/getAllImages', function (req, res) {
     
 
 docClient.scan(params, function(err, data) {
        if (err) {
             res.send('error occured while getting images; Please retry.')     
         } else {
-            res.send(data.Items);
+            res.json(data.Items);
         }
     });
     
