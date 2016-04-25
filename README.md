@@ -23,3 +23,5 @@ We need to have access to http://s3 from the localhost. Currently the only way I
 
 192.168.99.100 s3
 
+
+test
