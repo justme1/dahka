@@ -1,5 +1,12 @@
-web:
-  build: .
+webapp:
+  build: ./angularApp
+  ports: 
+    - "9000:9000"
+  volumes:
+   - './angularApp/:/usr/src/app'
+  
+server:
+  build: ./server/
   ports: 
     - "8080:8080"
     - "8085:8085"
@@ -11,7 +18,7 @@ web:
     - DYNAMODB_HOST=dynamodb
     - S3_HOST=s3
   volumes:
-    - '.:/usr/src/app'
+    - './server/:/usr/src/app'
 dynamodb:
   image: instructure/dynamodb:latest
   ports:

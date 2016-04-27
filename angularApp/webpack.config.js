@@ -2,8 +2,10 @@ var path = require('path');
 var webpack = require("webpack");
 
 var buildPath = path.resolve(__dirname, 'dist');
-
 module.exports = {
+  watchOptions: {
+    poll: true
+  },
   entry: {
     "vendor": [
       path.resolve(__dirname, 'app', 'vendor')

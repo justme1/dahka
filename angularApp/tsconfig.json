@@ -13,5 +13,5 @@
     "node_modules"
   ],
   "compileOnSave": true,
-  "buildOnSave": false
+  "buildOnSave": true
 }
