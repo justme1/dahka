@@ -4,7 +4,7 @@ webapp:
     - "9000:9000"
   volumes:
    - './angularApp/:/usr/src/app'
-  
+   - /usr/src/app/node_modules
 server:
   build: ./server/
   ports: 
@@ -19,6 +19,7 @@ server:
     - S3_HOST=s3
   volumes:
     - './server/:/usr/src/app'
+    - /usr/src/app/node_modules
 dynamodb:
   image: instructure/dynamodb:latest
   ports:
