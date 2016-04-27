@@ -8,25 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('angular2/core');
-var http_test_component_1 = require("./http-test.component");
-var AppComponent = (function () {
-    function AppComponent() {
+var core_1 = require("angular2/core");
+var http_1 = require("angular2/http");
+require('rxjs/add/operator/map');
+var HTTPTestService = (function () {
+    function HTTPTestService(_http) {
+        this._http = _http;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        // require.ensure(["test"], function(require) {
-        //     console.log(require("test"));
-        // });
+    HTTPTestService.prototype.getCurrentTime = function () {
+        return this._http.get('http://date.jsontest.com').map(function (res) { return res.json(); });
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "<h1>hello World5</h1> <http-test></http-test>",
-            directives: [http_test_component_1.HTTPTestComponent]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    HTTPTestService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], HTTPTestService);
+    return HTTPTestService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.HTTPTestService = HTTPTestService;
+//# sourceMappingURL=http-test.service.js.map

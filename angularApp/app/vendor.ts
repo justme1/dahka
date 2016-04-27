@@ -5,5 +5,5 @@ import 'zone.js/dist/zone';
 import 'reflect-metadata';
 import 'angular2/core';
 import 'angular2/platform/browser'
-
+import  'rxjs';
 

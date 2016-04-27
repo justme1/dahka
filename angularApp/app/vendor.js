@@ -6,4 +6,5 @@ require('zone.js/dist/zone');
 require('reflect-metadata');
 require('angular2/core');
 require('angular2/platform/browser');
+require('rxjs');
 //# sourceMappingURL=vendor.js.map
