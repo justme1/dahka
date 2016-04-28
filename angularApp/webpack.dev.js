@@ -9,7 +9,7 @@ var config = require('./webpack.config.js');
  * Hot-loading entry point
  */
 
-config.devtool = 'eval';
+// config.devtool = 'eval';
 
 
 /*
@@ -25,6 +25,12 @@ config.entry.app.push('webpack-hot-middleware/client?reload=true');
 
 config.plugins.push( new webpack.HotModuleReplacementPlugin() );
 config.plugins.push( new webpack.NoErrorsPlugin() );
+
+config.plugins.push(new webpack.DefinePlugin({
+        DEBUG: true,
+        ENVIRONMENT : JSON.stringify("development")
+    })
+)
 
 module.exports = config;
 
