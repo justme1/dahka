@@ -3,6 +3,8 @@ var webpack = require("webpack");
 
 var buildPath = path.resolve(__dirname, 'dist');
 module.exports = {
+
+
   watchOptions: {
     poll: true
   },

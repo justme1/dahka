@@ -7,6 +7,9 @@ export  class  HTTPTestService {
     constructor (private _http:Http) {}
 
     getCurrentTime () {
-        return this._http.get('http://date.jsontest.com').map(res => res.json());
+        // return this._http.get('http://date.jsontest.com').map(res => res.json());
+        return this._http.get('http://localhost:8088/getAllImages').map(res => res.json());
+        // return this._http.get('http://localhost:8088/getCurrentTime').map(res => res.json());
+
     }
 }

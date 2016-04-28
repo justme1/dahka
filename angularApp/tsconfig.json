@@ -12,6 +12,6 @@
   "exclude": [
     "node_modules"
   ],
-  "compileOnSave": true,
-  "buildOnSave": true
+  "compileOnSave": false,
+  "buildOnSave": false
 }
