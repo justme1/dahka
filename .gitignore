@@ -34,3 +34,6 @@ node_modules
 
 # ignore webpack builds
 dist/
+
+/.idea/
+.idea/workspace.xml
