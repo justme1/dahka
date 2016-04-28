@@ -8,7 +8,8 @@ export  class  HTTPTestService {
 
     getCurrentTime () {
         // return this._http.get('http://date.jsontest.com').map(res => res.json());
-        return this._http.get('http://localhost:8088/getAllImages').map(res => res.json());
+        // return this._http.get('http://localhost:8088/getAllImages').map(res => res.json());
+        return this._http.get('/getAllImages').map(res => res.json());
         // return this._http.get('http://localhost:8088/getCurrentTime').map(res => res.json());
 
     }
