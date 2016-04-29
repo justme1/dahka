@@ -22,7 +22,7 @@ module.exports = {
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['', '.ts', '.js'],
     modulesDirectories: ['node_modules', 'resources', 'app']
   },
   devtool: 'source-map',
